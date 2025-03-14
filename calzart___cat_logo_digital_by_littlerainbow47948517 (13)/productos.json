@@ -1,0 +1,147 @@
+{
+  "cities": [
+    "La Paz",
+    "Cochabamba", 
+    "Santa Cruz",
+    "Sucre",
+    "Oruro"
+  ],
+  "categories": [
+    "Casual",
+    "Formal", 
+    "Seguridad",
+    "Deportivo",
+    "Artesanal"
+  ],
+  "products": [
+    {
+      "id": 1,
+      "featured": true,
+      "name": "Mochila de Cuero Napa",
+      "description": "¡Oferta exclusiva en La Paz! Mochila de cuero napa, elegante y resistente, perfecta para acompañarte.",
+      "city": "La Paz",
+      "category": "Casual",
+      "image_url": "mochila8seg.gif",
+      "image_urls": [
+        "mochila8seg.gif",
+        "banner4.png",
+        "banner2.png"
+      ],
+      "price": "500.00",
+      "material": "Cuero Vacuno",
+      "colors": ["Marrón", "Negro"],
+      "sizes": ["38", "39", "40", "41", "42", "43", "44", "45"],
+      "care_instructions": "Limpiar con paño suave y aplicar crema de cuero regularmente.",
+      "additional_details": {
+        "sole_material": "Goma Vulcanizada",
+        "closure_type": "Cordones",
+        "heel_height": "2.5 cm",
+        "origin": "Fabricación Boliviana"
+      },
+      "payment_qr_code_url": "https://example.com/qr/zapato1"
+    },
+    {
+      "id": 2,
+      "featured": true,
+      "name": "Botin de Cuero Femenino",
+      "description": "Precio exclusivo para la ciudad de COCHABAMBA.",
+      "city": "Cochabamba",
+      "category": "Formal",
+      "image_url": "botas8seg.gif",
+      "image_urls": [
+        "botas8seg.gif", 
+        "banner3.png",
+        "banner2.png"
+      ],
+      "price": "800.00",
+      "material": "Cuero Hidrorrepelente",
+      "colors": ["Café", "Negro"],
+      "sizes": ["39", "40", "41", "42", "43", "44"],
+      "care_instructions": "Aplicar protector de cuero antes de uso en exteriores.",
+      "additional_details": {
+        "sole_material": "Goma Antideslizante",
+        "closure_type": "Cremallera y Cordones",
+        "heel_height": "4 cm",
+        "origin": "Diseño Boliviano, Calidad Internacional"
+      },
+      "payment_qr_code_url": "https://example.com/qr/bota1"
+    },
+    {
+      "id": 3,
+      "name": "Botas de Seguridad",
+      "description": "Botas de seguridad con puntera de acero y suela antideslizante. Protección y confort.",
+      "city": "Santa Cruz",
+      "category": "Seguridad",
+      "image_url": "botasseguridad8seg.gif",
+      "image_urls": [
+        "botasseguridad8seg.gif",
+        "banner4.png", 
+        "banner3.png"
+      ],
+      "price": "350.00",
+      "material": "Cuero Suave",
+      "colors": ["Beige", "Negro"],
+      "sizes": ["35", "36", "37", "38", "39", "40"],
+      "care_instructions": "Mantener alejada de la humedad directa, limpiar con paño seco.",
+      "additional_details": {
+        "sole_material": "Cuero Acolchado",
+        "closure_type": "Hebilla Ajustable",
+        "heel_height": "6 cm",
+        "origin": "Artesanía Boliviana"
+      },
+      "payment_qr_code_url": "https://example.com/qr/sandalia1"
+    },
+    {
+      "id": 4,
+      "featured": true,
+      "name": "Billeteras 100% Cuero Premium",
+      "description": "¡Celebra el Día del Padre con estilo! Billeteras de cuero. ¡El regalo perfecto para papá!",
+      "city": "Sucre",
+      "category": "Casual",
+      "image_url": "billeteras8seg.gif",
+      "image_urls": [
+        "animacion3.gif",
+        "banner2.png",
+        "banner3.png"
+      ],
+      "price": "400.00",
+      "material": "Cuero Premium",
+      "colors": ["Marrón Claro", "Negro"],
+      "sizes": ["38", "39", "40", "41", "42", "43"],
+      "care_instructions": "Utilizar crema para cuero cada 2-3 meses para mantener su brillo.",
+      "additional_details": {
+        "sole_material": "Goma Flexible",
+        "closure_type": "Sin Cordones",
+        "heel_height": "1.5 cm",
+        "origin": "Diseño Exclusivo Calzart"
+      },
+      "payment_qr_code_url": "https://example.com/qr/mocasin1"
+    },
+    {
+      "id": 5,
+      "featured": false,
+      "name": "Billeteras 100% Cuero Premium",
+      "description": "¡Celebra el Día del Padre con estilo! Billeteras de cuero. ¡El regalo perfecto para papá!",
+      "city": "Sucre",
+      "category": "Casual",
+      "image_url": "destacado1.png",
+      "image_urls": [
+        "animacion3.gif",
+        "banner2.png",
+        "banner3.png"
+      ],
+      "price": "400.00",
+      "material": "Cuero Premium",
+      "colors": ["Marrón Claro", "Negro"],
+      "sizes": ["38", "39", "40", "41", "42", "43"],
+      "care_instructions": "Utilizar crema para cuero cada 2-3 meses para mantener su brillo.",
+      "additional_details": {
+        "sole_material": "Goma Flexible",
+        "closure_type": "Sin Cordones",
+        "heel_height": "1.5 cm",
+        "origin": "Diseño Exclusivo Calzart"
+      },
+      "payment_qr_code_url": "https://example.com/qr/mocasin1"
+    }
+  ]
+}

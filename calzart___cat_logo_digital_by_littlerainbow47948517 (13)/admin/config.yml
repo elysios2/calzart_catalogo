@@ -1,0 +1,36 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "productos"
+    label: "Productos"
+    folder: "productos"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "ID", name: "id", widget: "number" }
+      - { label: "Destacado", name: "featured", widget: "boolean", default: false }
+      - { label: "Nombre", name: "name", widget: "string" }
+      - { label: "Descripción", name: "description", widget: "text" }
+      - { label: "Ciudad", name: "city", widget: "select", options: ["La Paz", "Cochabamba", "Santa Cruz", "Sucre", "Oruro"] }
+      - { label: "Categoría", name: "category", widget: "select", options: ["Casual", "Formal", "Seguridad", "Deportivo", "Artesanal"] }
+      - { label: "Imagen Principal", name: "image_url", widget: "image" }
+      - { label: "Galería de Imágenes", name: "image_urls", widget: "list", field: {label: "Imagen", name: "image", widget: "image"} }
+      - { label: "Precio", name: "price", widget: "string" }
+      - { label: "Material", name: "material", widget: "string" }
+      - { label: "Colores", name: "colors", widget: "list", field: {label: "Color", name: "color", widget: "string"} }
+      - { label: "Tallas", name: "sizes", widget: "list", field: {label: "Talla", name: "size", widget: "string"} }
+      - { label: "Instrucciones de Cuidado", name: "care_instructions", widget: "text" }
+      - label: "Detalles Adicionales"
+        name: "additional_details"
+        widget: "object"
+        fields:
+          - { label: "Material de Suela", name: "sole_material", widget: "string" }
+          - { label: "Tipo de Cierre", name: "closure_type", widget: "string" }
+          - { label: "Altura del Tacón", name: "heel_height", widget: "string" }
+          - { label: "Origen", name: "origin", widget: "string" }
+      - { label: "URL de Código QR de Pago", name: "payment_qr_code_url", widget: "string" }

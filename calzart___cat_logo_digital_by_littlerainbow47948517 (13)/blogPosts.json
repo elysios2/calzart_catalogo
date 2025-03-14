@@ -1,0 +1,31 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "Tendencias de Moda en Calzado de Cuero",
+      "author": "María Rodríguez",
+      "date": "15 de Enero, 2024",
+      "image": "https://placehold.co/600x400",
+      "excerpt": "Descubre las últimas tendencias en calzado de cuero y cómo combinarlos con tu estilo personal.",
+      "content": "El mundo de la moda está en constante evolución, y el calzado de cuero no es una excepción. Este año, las tendencias apuntan a diseños versátiles que combinan comodidad y elegancia. Desde mocasines con detalles modernos hasta botas que desafían la temporada, te mostraremos cómo llevar el cuero con estilo."
+    },
+    {
+      "id": 2,
+      "title": "Cuidado y Mantenimiento del Calzado de Cuero",
+      "author": "Carlos Méndez",
+      "date": "22 de Enero, 2024",
+      "image": "https://placehold.co/600x400",
+      "excerpt": "Aprende los mejores consejos para mantener tu calzado de cuero en perfectas condiciones por más tiempo.",
+      "content": "El cuero es un material noble que requiere cuidados especiales. En este artículo, compartiremos técnicas profesionales para limpiar, hidratar y proteger tu calzado de cuero. Desde cremas hasta cepillados específicos, te enseñaremos a prolongar la vida útil de tus zapatos favoritos."
+    },
+    {
+      "id": 3,
+      "title": "Calzado Boliviano: Tradición y Artesanía",
+      "author": "Elena Fernández",
+      "date": "5 de Febrero, 2024",
+      "image": "https://placehold.co/600x400",
+      "excerpt": "Exploramos la rica tradición del calzado artesanal en Bolivia y su importancia cultural.",
+      "content": "Bolivia tiene una historia increíble en la fabricación de calzado. Nuestros artesanos combinan técnicas ancestrales con diseños contemporáneos, creando piezas únicas que cuentan historias a través de cada costura y detalle. Descubre el arte detrás de cada par de zapatos."
+    }
+  ]
+}

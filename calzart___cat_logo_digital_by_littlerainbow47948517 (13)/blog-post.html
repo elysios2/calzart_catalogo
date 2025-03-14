@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calzart - Blog Post</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="blog-post.js" type="module"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            clifford: '#da373d',
+          },
+          fontFamily: {
+            'sans': ['Poppins', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', "Segoe UI", 'Roboto', "Helvetica Neue", 'Arial', "Noto Sans", 'sans-serif', "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"]
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gray-50 font-sans">
+  <header class="bg-white shadow-md">
+    <nav class="container mx-auto py-4 px-6">
+      <div class="flex items-center justify-between">
+        <a href="index.html"><img src="/logo1.png" alt="Calzart Logo" class="h-12"></a>
+        <button id="menu-toggle" class="lg:hidden flex items-center px-3 py-2 border rounded text-gray-600 border-gray-600 hover:text-gray-800 hover:border-gray-800">
+          <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <title>Menu</title>
+            <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+          </svg>
+        </button>
+        <div class="hidden lg:flex space-x-6">
+          <a href="index.html" class="hover:text-gray-500">Inicio</a>
+          <a href="catalogo.html" class="hover:text-gray-500">Catálogo</a>
+          <a href="blog.html" class="hover:text-gray-500">Blog</a>
+          <a href="nosotros.html" class="hover:text-gray-500">Sobre Nosotros</a>
+        </div>
+      </div>
+
+      <div class="hidden lg:hidden mt-4" id="mobile-menu">
+        <a href="index.html" class="block py-2 px-4 text-sm hover:bg-gray-200">Inicio</a>
+        <a href="catalogo.html" class="block py-2 px-4 text-sm hover:bg-gray-200">Catálogo</a>
+        <a href="blog.html" class="block py-2 px-4 text-sm hover:bg-gray-200">Blog</a>
+        <a href="nosotros.html" class="block py-2 px-4 text-sm hover:bg-gray-200">Sobre Nosotros</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container mx-auto mt-8 px-6" style="padding-top: 50px;">
+    <article id="blog-post-content" class="max-w-3xl mx-auto">
+      <!-- Blog post content will be dynamically loaded here -->
+    </article>
+  </main>
+
+  <footer class="bg-gray-800 text-white py-8 mt-12">
+    <div class="container mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div>
+          <h4 class="font-semibold mb-2">Calzart</h4>
+          <p>Calzado de cuero artesanal boliviano.</p>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-2">Enlaces</h4>
+          <ul>
+            <li><a href="index.html" class="hover:text-gray-300"><i class="fas fa-home"></i> Inicio</a></li>
+            <li><a href="catalogo.html" class="hover:text-gray-300"><i class="fas fa-shopping-cart"></i> Catálogo</a></li>
+            <li><a href="blog.html" class="hover:text-gray-300"><i class="fas fa-newspaper"></i> Blog</a></li>
+            <li><a href="nosotros.html" class="hover:text-gray-300"><i class="fas fa-info-circle"></i> Sobre Nosotros</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-2">Síguenos</h4>
+          <div class="flex space-x-4">
+            <a href="#" class="hover:text-gray-300"><i class="fab fa-facebook"></i> Facebook</a>
+            <a href="#" class="hover:text-gray-300"><i class="fab fa-instagram"></i> Instagram</a>
+          </div>
+        </div>
+      </div>
+      <div class="mt-6 text-center">
+        <p>&copy; 2024 Calzart. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>

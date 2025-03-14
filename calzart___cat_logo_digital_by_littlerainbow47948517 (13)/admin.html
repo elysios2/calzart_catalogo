@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calzart - Administración de Productos</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            clifford: '#da373d',
+          },
+          fontFamily: {
+            'sans': ['Poppins', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', "Segoe UI", 'Roboto', "Helvetica Neue", 'Arial', "Noto Sans", 'sans-serif', "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"]
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="admin.js" type="module"></script>
+</head>
+
+<body class="bg-gray-100 font-sans">
+  <header class="bg-white shadow-md">
+    <nav class="container mx-auto py-4 px-6">
+      <div class="flex items-center justify-between">
+        <a href="index.html"><img src="/logo1.png" alt="Calzart Logo" class="h-12"></a>
+        <div class="hidden lg:flex space-x-6">
+          <a href="index.html" class="hover:text-gray-500">Inicio</a>
+          <a href="catalogo.html" class="hover:text-gray-500">Catálogo</a>
+          <a href="blog.html" class="hover:text-gray-500">Blog</a>
+          <a href="nosotros.html" class="hover:text-gray-500">Sobre Nosotros</a>
+          <a href="admin.html" class="hover:text-gray-500 font-semibold">Administración</a>
+          <button id="logout-button" class="hover:text-red-500 text-red-600 font-semibold hidden">
+            <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container mx-auto mt-8 px-6">
+    <div id="login-form" class="max-w-lg mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+      <h2 class="text-3xl font-semibold text-gray-800 mb-6 text-center">Iniciar Sesión</h2>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="username">Usuario:</label>
+        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Usuario">
+      </div>
+      <div class="mb-6">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="password">Contraseña:</label>
+        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="Contraseña">
+      </div>
+      <div class="flex items-center justify-between">
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" id="login-button">Iniciar Sesión</button>
+      </div>
+    </div>
+
+    <div id="admin-content" class="hidden">
+      <section class="product-list mb-8">
+        <h2 class="text-3xl font-semibold text-gray-800 mb-6 text-center">Lista de Productos</h2>
+
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="featured-product-select">Producto Destacado:</label>
+          <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="featured-product-select">
+            <option value="">Seleccionar Producto</option>
+          </select>
+          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-2" type="button" id="update-featured-button">Actualizar Producto Destacado</button>
+        </div>
+
+        <div id="product-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Products will be loaded here dynamically -->
+        </div>
+      </section>
+
+      <section class="add-product bg-white rounded-lg shadow-xl p-8">
+        <h2 class="text-3xl font-semibold text-gray-800 mb-8 text-center border-b pb-4">Agregar Nuevo Producto</h2>
+        <form id="add-product-form" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Image Upload Section -->
+            <div class="bg-gray-50 border-2 border-dashed border-gray-300 rounded-lg p-6 flex flex-col items-center justify-center transition-all duration-300 hover:border-blue-500 hover:bg-blue-50">
+              <label class="block text-center mb-4" for="product-image-file">
+                <span class="text-lg font-semibold text-gray-700 block mb-2">Subir Imagen Principal</span>
+                <span class="text-sm text-gray-500 block mb-2">
+                  Tamaño recomendado: 600x400 píxeles
+                  Formatos: JPG, PNG, GIF
+                  Peso máximo: 2MB
+                </span>
+                <input
+                  class="hidden"
+                  id="product-image-file" 
+                  type="file" 
+                  accept="image/*"
+                >
+                <div class="cursor-pointer bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300 inline-block">
+                  Seleccionar Archivo
+                </div>
+              </label>
+              <img 
+                id="image-preview" 
+                src="#" 
+                alt="Vista previa de la imagen" 
+                class="hidden mt-4 max-w-full max-h-64 object-contain rounded-md border"
+              >
+            </div>
+
+            <!-- Name and Description -->
+            <div class="space-y-4">
+              <div>
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="product-name">
+                  Nombre del Producto
+                </label>
+                <input
+                  class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  id="product-name" 
+                  type="text" 
+                  placeholder="Nombre del producto" 
+                  required
+                >
+              </div>
+              <div>
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="product-description">
+                  Descripción
+                </label>
+                <textarea
+                  class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  id="product-description" 
+                  placeholder="Descripción detallada del producto"
+                  rows="4"
+                  required
+                ></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- Additional Details Row 1 -->
+          <div>
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="product-city">
+              Ciudad
+            </label>
+            <select
+              class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              id="product-city"
+              required
+            >
+              <option value="">Seleccionar Ciudad</option>
+              <option value="La Paz">La Paz</option>
+              <option value="Cochabamba">Cochabamba</option>
+              <option value="Santa Cruz">Santa Cruz</option>
+              <option value="Sucre">Sucre</option>
+              <option value="Oruro">Oruro</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="product-category">
+              Categoría
+            </label>
+            <select
+              class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              id="product-category"
+              required
+            >
+              <option value="">Seleccionar Categoría</option>
+              <option value="Casual">Casual</option>
+              <option value="Formal">Formal</option>
+              <option value="Seguridad">Seguridad</option>
+              <option value="Deportivo">Deportivo</option>
+              <option value="Artesanal">Artesanal</option>
+            </select>
+          </div>
+
+          <!-- Additional Details Row 2 -->
+          <div>
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="product-price">
+              Precio
+            </label>
+            <input
+              class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              id="product-price" 
+              type="number" 
+              placeholder="Precio del producto" 
+              required
+            >
+          </div>
+
+          <div>
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="product-material">
+              Material
+            </label>
+            <input
+              class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              id="product-material" 
+              type="text" 
+              placeholder="Material principal" 
+              required
+            >
+          </div>
+
+          <!-- Colors and Sizes -->
+          <div>
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="product-colors">
+              Colores (separados por coma)
+            </label>
+            <input
+              class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              id="product-colors" 
+              type="text" 
+              placeholder="Negro, Marrón, Café" 
+              required
+            >
+          </div>
+
+          <div>
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="product-sizes">
+              Tallas (separadas por coma)
+            </label>
+            <input
+              class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              id="product-sizes" 
+              type="text" 
+              placeholder="38, 39, 40, 41" 
+              required
+            >
+          </div>
+
+          <!-- Technical Details -->
+          <div>
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="product-care-instructions">
+              Instrucciones de Cuidado
+            </label>
+            <input
+              class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              id="product-care-instructions" 
+              type="text" 
+              placeholder="Cómo cuidar el producto" 
+              required
+            >
+          </div>
+
+          <div>
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="product-sole-material">
+              Material de la Suela
+            </label>
+            <input
+              class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              id="product-sole-material" 
+              type="text" 
+              placeholder="Material de la suela" 
+              required
+            >
+          </div>
+
+          <!-- Closing Details -->
+          <div>
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="product-closure-type">
+              Tipo de Cierre
+            </label>
+            <input
+              class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              id="product-closure-type" 
+              type="text" 
+              placeholder="Cordones, Cremallera, etc." 
+              required
+            >
+          </div>
+
+          <div>
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="product-heel-height">
+              Altura del Tacón
+            </label>
+            <input
+              class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              id="product-heel-height" 
+              type="text" 
+              placeholder="Altura en cm" 
+              required
+            >
+          </div>
+
+          <!-- Origin -->
+          <div class="md:col-span-2">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="product-origin">
+              Origen
+            </label>
+            <input
+              class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              id="product-origin" 
+              type="text" 
+              placeholder="País o región de fabricación" 
+              required
+            >
+          </div>
+
+          <!-- Submit Button -->
+          <div class="md:col-span-2 flex justify-center mt-6">
+            <button
+              class="bg-blue-600 text-white py-3 px-8 rounded-lg hover:bg-blue-700 transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+              type="submit"
+            >
+              Agregar Producto
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <section class="banner-configuration bg-white rounded-lg shadow-xl p-8 mt-8">
+        <h2 class="text-3xl font-semibold text-gray-800 mb-8 text-center border-b pb-4">Configurar Banner de Producto Destacado</h2>
+        <form id="banner-configuration-form" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Banner Image Upload Section -->
+            <div class="bg-gray-50 border-2 border-dashed border-gray-300 rounded-lg p-6 flex flex-col items-center justify-center transition-all duration-300 hover:border-blue-500 hover:bg-blue-50">
+              <label class="block text-center mb-4" for="banner-image-file">
+                <span class="text-lg font-semibold text-gray-700 block mb-2">Subir Imagen para Banner</span>
+                <span class="text-sm text-gray-500 block mb-2">
+                  Tamaño recomendado: 1920x800 píxeles
+                  Formatos: JPG, PNG
+                  Peso máximo: 5MB
+                </span>
+                <input
+                  class="hidden"
+                  id="banner-image-file" 
+                  type="file" 
+                  accept="image/jpeg,image/png"
+                >
+                <div class="cursor-pointer bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300 inline-block">
+                  Seleccionar Archivo
+                </div>
+              </label>
+              <img 
+                id="banner-image-preview" 
+                src="#" 
+                alt="Vista previa de la imagen del banner" 
+                class="hidden mt-4 max-w-full max-h-64 object-contain rounded-md border"
+              >
+            </div>
+
+            <!-- Banner Details -->
+            <div class="space-y-4">
+              <div>
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="banner-title">
+                  Título del Banner
+                </label>
+                <input
+                  class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  id="banner-title" 
+                  type="text" 
+                  placeholder="Título principal del banner" 
+                  required
+                >
+              </div>
+              <div>
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="banner-description">
+                  Descripción del Banner
+                </label>
+                <textarea
+                  class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  id="banner-description" 
+                  placeholder="Descripción destacada para el banner"
+                  rows="4"
+                  required
+                ></textarea>
+              </div>
+              <div>
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="banner-product-select">
+                  Producto Asociado al Banner
+                </label>
+                <select
+                  class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  id="banner-product-select"
+                  required
+                >
+                  <option value="">Seleccionar Producto</option>
+                  <!-- Products will be dynamically populated -->
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="md:col-span-2 flex justify-center mt-6">
+            <button
+              class="bg-blue-600 text-white py-3 px-8 rounded-lg hover:bg-blue-700 transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+              type="submit"
+              id="update-banner-button"
+            >
+              Actualizar Banner
+            </button>
+          </div>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <footer class="bg-gray-800 text-white py-8 mt-12">
+    <div class="container mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div>
+          <h4 class="font-semibold mb-2">Calzart</h4>
+          <p>Calzado de cuero artesanal boliviano.</p>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-2">Enlaces</h4>
+          <ul>
+            <li><a href="index.html" class="hover:text-gray-300"><i class="fas fa-home"></i> Inicio</a></li>
+            <li><a href="catalogo.html" class="hover:text-gray-300"><i class="fas fa-shopping-cart"></i> Catálogo</a></li>
+            <li><a href="blog.html" class="hover:text-gray-300"><i class="fas fa-newspaper"></i> Blog</a></li>
+            <li><a href="nosotros.html" class="hover:text-gray-300"><i class="fas fa-info-circle"></i> Sobre Nosotros</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-2">Síguenos</h4>
+          <div class="flex space-x-4">
+            <a href="#" class="hover:text-gray-300"><i class="fab fa-facebook"></i> Facebook</a>
+            <a href="#" class="hover:text-gray-300"><i class="fab fa-instagram"></i> Instagram</a>
+          </div>
+        </div>
+      </div>
+      <div class="mt-6 text-center">
+        <p>&copy; 2024 Calzart. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
